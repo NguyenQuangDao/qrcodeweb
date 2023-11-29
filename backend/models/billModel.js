@@ -10,6 +10,8 @@ const drinkSchema = new mongoose.Schema({
         type: Number,
         required: true
     }
+},{
+    timestamps: true
 });
 
 export const Drink = mongoose.model('Drink', drinkSchema);
@@ -46,6 +48,8 @@ const billSchema = new mongoose.Schema({
             required: true
         }
     }]
+},{
+    timestamps: true
 });
 
 export const Bill = mongoose.model('Bill', billSchema);
