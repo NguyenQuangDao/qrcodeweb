@@ -152,6 +152,22 @@ app.post('/api/drinks', async (request, response) => {
     }
 })
 
+app.get('/records', async (req, res) => {
+    const { from, to } = req.query; 
+    const fromDate = new Date(from);
+    const toDate = new Date(to);
+
+    const query = { createdAt: { $gte: fromDate, $lte: toDate } };
+  
+    try {
+      const records = await Bill.find(query).toArray();
+      res.json(records);
+    } catch (error) {
+      console.error('Lỗi truy vấn:', error);
+      res.status(500).json({ error: 'Lỗi truy vấn' });
+    }
+  });
+
 mongoose
     .connect(mongoDBURL)
     .then(() => {
