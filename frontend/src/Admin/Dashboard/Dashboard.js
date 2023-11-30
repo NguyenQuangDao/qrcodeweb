@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./Dashboard.scss";
 import {
   UilThumbsUp,
@@ -109,6 +110,20 @@ function Dashboard() {
   const handleCancel = () => {
     setOpen(false);
   };
+  const [sumBill,setSumBill]=useState([])
+  // const [sumMoney,setSumMoney]=useState('')
+  useEffect( () => {
+    // let sumTotleMony = 0;
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:5555/api/bills");
+        setSumBill(response.data);
+      } catch (error) {
+        console.error("Error fetching drinks:", error);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <div id="AdMin">
       <NavAdmin
@@ -140,27 +155,17 @@ function Dashboard() {
             </div>
 
             <div className="boxes">
-              <div className="box box1">
-                <UilThumbsUp className="i" />
-                <span className="text">some thing ... </span>
-                <span className="number">0</span>
+              <div className="box box_50">
+                <SolutionOutlined style={{ fontSize: "35px" }} className="i" />
+                <span className="text">Tổng hóa đơn</span>
+                <span className="number">{sumBill.length}</span>
               </div>
-              <div className="box box2">
+              {/* <div className="box box2">
                 <PayCircleOutlined style={{ fontSize: "35px" }} className="i" />
                 <span className="text">Tổng thu nhập</span>
                 <span className="number">0</span>
-              </div>
-              <div className="box box3">
-                <UilComments className="i" />
-                <span className="text">some thing</span>
-                <span className="number">0</span>
-              </div>
+              </div> */}
               <div className="box box_50 box4">
-                <SolutionOutlined style={{ fontSize: "35px" }} className="i" />
-                <span className="text">Tổng hóa đơn</span>
-                <span className="number">0</span>
-              </div>
-              <div className="box box_50 box5">
                 <UserOutlined style={{ fontSize: "35px" }} className="i" />
                 <span className="text">Tổng người dùng</span>
                 <span className="number">{dataUser.length}</span>
@@ -287,12 +292,12 @@ function Dashboard() {
           <div className="Edit_type">
             <p>Thay đổi mật khẩu</p>
             <input
-            style={{
-              padding:'5px',
-              paddingLeft:'10px',
-              borderRadius:'8px',
-              border:'1px solid #000'
-            }}
+              style={{
+                padding: "5px",
+                paddingLeft: "10px",
+                borderRadius: "8px",
+                border: "1px solid #000",
+              }}
               value={changePasswordUser}
               onChange={(e) => setChangePasswordUser(e.target.value)}
             />
