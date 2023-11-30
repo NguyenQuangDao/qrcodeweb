@@ -2,7 +2,7 @@ import React from "react";
 import "./NavChildAdmin.scss";
 import { UilEstate } from "@iconscout/react-unicons";
 import { Link } from "react-router-dom";
-import { CameraOutlined, AlertOutlined } from "@ant-design/icons";
+import {  ShoppingOutlined,SearchOutlined } from "@ant-design/icons";
 function NavChildAdmin() {
   return (
     <div className="NavChildAdmin">
@@ -14,15 +14,15 @@ function NavChildAdmin() {
           </Link>
         </span>
         <span>
-        <Link to="/admin/camera" style={{ display: "flex" }}>
-          <CameraOutlined className="i" />
-          <p className="link-name">Camera</p>
+        <Link to="/addvoucher" style={{ display: "flex" }}>
+          <ShoppingOutlined className="i" />
+          <p className="link-name">Thêm Voucher</p>
         </Link>
         </span>
         <span>
-        <Link to="/admin/alert" style={{ display: "flex" }}>
-          <AlertOutlined className="i" />
-          <p className="link-name">Alert</p>
+        <Link to="/searchbill" style={{ display: "flex" }}>
+          <SearchOutlined className="i" />
+          <p className="link-name">Search hóa đơn</p>
         </Link>
         </span>
       </nav>

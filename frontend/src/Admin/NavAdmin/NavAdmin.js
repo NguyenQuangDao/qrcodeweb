@@ -1,7 +1,7 @@
 import React from "react";
 import "./NavAdmin.scss";
 import { UilEstate, UilSignout, UilMoon } from "@iconscout/react-unicons";
-import { CameraOutlined,AlertOutlined } from "@ant-design/icons";
+import { SearchOutlined,ShoppingOutlined } from "@ant-design/icons";
 import { Modal } from "antd";
 import { Link } from "react-router-dom";
 
@@ -17,13 +17,8 @@ function NavAdmin(props) {
     <nav className={addClass == "open" ? "open" : "close"}>
       <div className="logo-name">
         <div className="logo-image">
-          {/* <img
-              src="https://tse3.mm.bing.net/th?id=OIP.IwCOlKGwGWRD82RFaVlcTgHaE8&pid=Api&P=0"
-              alt=""
-            /> */}
         </div>
-
-        <span className="logo_name">Admin ClassGuard</span>
+        <span className="logo_name textCenter">Page Admin</span>
       </div>
 
       <div className="menu-items">
@@ -38,17 +33,17 @@ function NavAdmin(props) {
           </li>
           <li>
             <span>
-              <Link to="/admin/camera" style={{ display: 'flex' }}>
-                <CameraOutlined className="i" />
-                <p className="link-name">Camera</p>
+              <Link to="/addvoucher" style={{ display: 'flex' }}>
+                <ShoppingOutlined className="i" />
+                <p className="link-name">Tạo Voucher</p>
               </Link>
             </span>
           </li>
           <li>
             <span>
-              <Link to="/admin/alert" style={{ display: 'flex' }}>
-                <AlertOutlined className="i" />
-                <p className="link-name">Alert</p>
+              <Link to="/searchbill" style={{ display: 'flex' }}>
+                <SearchOutlined className="i" />
+                <p className="link-name">Search Hóa Đơn</p>
               </Link>
             </span>
           </li>

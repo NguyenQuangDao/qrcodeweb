@@ -6,6 +6,8 @@ import Login from "./components/Authentication/Login/Login";
 import Register from "./components/Authentication/Register/Register";
 import Dashboard from "./Admin/Dashboard/Dashboard";
 import BabyAdmin from "./BabyAdmin/BabyAdmin";
+import AddVoucher from "./Admin/Dashboard/AddVoucher/AddVoucher";
+import SearchBill from "./Admin/Dashboard/SearchBill/SearchBill";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           <Route path="/babyadmin" element={<BabyAdmin />} />
           {/* Admin */}
           <Route path="/admin" element={<Dashboard />} />
+          <Route path="/addvoucher" element={<AddVoucher />} />
+          <Route path="/searchbill" element={<SearchBill />} />
         </Routes>
       </ContextProivider>
     </div>

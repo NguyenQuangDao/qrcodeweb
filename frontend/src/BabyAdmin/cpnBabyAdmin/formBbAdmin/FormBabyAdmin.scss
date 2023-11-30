@@ -1,0 +1,30 @@
+#FormBabyAdmin {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100vw;
+  Form {
+    width: 100%;
+  }
+  .bgImg {
+    width: 40vw;
+    margin: 0 auto;
+    position: relative;
+    .imgVoucher {
+      z-index: 1;
+      position: relative;
+      background-image: url("./Voucher.png");
+      width: 500px;
+      height: 300px;
+      background-size:cover ;
+    }
+    .codeNew {
+      position: absolute;
+      font-size: 10px;
+      top: 186px;
+      left: 256px;
+      z-index: 1000000;
+      color: #fff;
+    }
+  }
+}

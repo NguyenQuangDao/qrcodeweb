@@ -26,7 +26,7 @@ function NavBar() {
     setIsModalOpenSignOut(true);
   };
   const handleOkSignOut = () => {
-    localStorage.removeItem("billData");
+    localStorage.removeItem("myArrayData");
     auth.signOut();
     navigateSignout("/login");
   };
@@ -57,9 +57,9 @@ function NavBar() {
           <h4>Xin chào: {user.displayName}
           </h4>
         </div>
-        <div className="nav">
+        {/* <div className="nav">
           <Link to="/">Home</Link>
-        </div>
+        </div> */}
         <div className="logOut" onClick={isModalOpenSignOut}>
           <p className="btn btn-logOut">Sign out</p>
         </div>

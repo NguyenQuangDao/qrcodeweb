@@ -49,6 +49,7 @@ export const ContextProivider = ({ children }) => {
       unsubcribe();
     };
   }, []);
+  
   const contextValue = {
     user,
     loading,
