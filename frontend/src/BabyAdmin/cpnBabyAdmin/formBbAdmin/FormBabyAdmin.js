@@ -4,6 +4,9 @@ import React, { useState, memo, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useUserContext } from "../../../Context/userContext";
 import { Button, Form, Input, Select, InputNumber, message } from "antd";
+import html2canvas from 'html2canvas';
+
+
 const { Option } = Select;
 function FormBabyAdmin() {
   const { user } = useUserContext();
@@ -112,6 +115,41 @@ function FormBabyAdmin() {
       </Option>
     ));
   };
+
+  const [capturedImage, setCapturedImage] = useState(null);
+
+  const captureAndSaveImage = () => {
+    const element = document.getElementById('myDiv');
+    html2canvas(element).then(function (canvas) {
+      const image = canvas.toDataURL('image/png');
+
+      // Tạo một liên kết tải xuống
+      const link = document.createElement('a');
+      link.href = image;
+      link.download = 'myImage.png';
+
+      // Gợi ý người dùng lưu tệp tin vào ổ đĩa D: tải xuống
+      link.setAttribute('download', 'D:\\download\\myImage.png');
+
+      // Thêm liên kết vào trang
+      document.body.appendChild(link);
+
+      // Kích hoạt sự kiện nhấp chuột trên liên kết để tải xuống
+      link.click();
+
+      // Xóa liên kết sau khi tải xuống
+      document.body.removeChild(link);
+    });
+  };
+
+  {
+    capturedImage && (
+      <div>
+        <img src={capturedImage} alt="Captured Image" />
+        <a href={capturedImage} download="myImage.png">Tải xuống ảnh</a>
+      </div>
+    )
+  }
 
   // Filter `option.label` match the user type `input`
   const filterOption = (input, option) =>
@@ -262,10 +300,16 @@ function FormBabyAdmin() {
             </Form.Item>
           </Form>
         </div>
+
         <div className="bgImg">
-          <div className="imgVoucher">
-            <div className="codeNew">{codeNew ? codeNew.billID : ""}</div>
+          <div id="myDiv" className="imgVoucher">
+            <div className="codeNew">{codeNew ? codeNew.billID : ''}</div>
           </div>
+        </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+        <Button type="primary" onClick={captureAndSaveImage}>
+          In Voucher
+        </Button>
         </div>
       </div>
     </>
