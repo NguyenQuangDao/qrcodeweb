@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import firebase from "firebase/app";
 import "./Dashboard.scss";
 import {
   UilThumbsUp,
@@ -92,7 +93,6 @@ function Dashboard() {
       });
       alert("Mật khẩu thay đổi thành công");
     } else {
-      alert("Mật khẩu thay đổi không hợp lệ (ít nhất phải trên 6 ký tự)");
       setOpen(false);
       setConfirmLoading(false);
       setTypeUser("user");
@@ -103,16 +103,27 @@ function Dashboard() {
     setTypeUser("user");
     setChangePasswordUser("");
     if (checkDelete) {
-      await deleteDoc(doc(db, "user", idEditUser));
+      const userValue = auth.currentUser;
+      if (userValue) {
+        userValue
+          .delete()
+          .then(() => {
+            deleteDoc(doc(db, "user", idEditUser));
+          })
+          .catch((error) => {});
+      } else {
+        // Người dùng chưa đăng nhập, không có tài khoản để xóa
+        console.log("Người dùng chưa đăng nhập!");
+      }
     }
     window.location.reload();
   };
   const handleCancel = () => {
     setOpen(false);
   };
-  const [sumBill,setSumBill]=useState([])
+  const [sumBill, setSumBill] = useState([]);
   // const [sumMoney,setSumMoney]=useState('')
-  useEffect( () => {
+  useEffect(() => {
     // let sumTotleMony = 0;
     const fetchData = async () => {
       try {

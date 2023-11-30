@@ -32,24 +32,26 @@ export const ContextProivider = ({ children }) => {
         await getDoc(doc(db, "user", res.uid)).then((doc) => {
           setUser(doc.data());
           if (doc.data().roles === "admin") {
-            navigate("/admin");
+            return navigate("/admin");
           } else if (doc.data().roles === "babyadmin") {
-            navigate("/babyadmin");
+            return navigate("/babyadmin");
+          } else if (doc.data().roles === "user") {
+            return  navigate("/user");
           } else {
-            navigate("/");
+              navigate("/login");
           }
         });
         //If the account does not exist in the database => login
       } else {
         setLoading(false);
-        navigate("/login");
+         navigate("/login");
       }
     });
     return () => {
       unsubcribe();
     };
   }, []);
-  
+
   const contextValue = {
     user,
     loading,

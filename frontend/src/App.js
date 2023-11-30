@@ -16,7 +16,8 @@ function App() {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<PageHome />} />
+          <Route path="/user" element={<PageHome />} />
+          <Route path="/" element={<Login />} />
           {/* BabyAdmin */}
           <Route path="/babyadmin" element={<BabyAdmin />} />
           {/* Admin */}

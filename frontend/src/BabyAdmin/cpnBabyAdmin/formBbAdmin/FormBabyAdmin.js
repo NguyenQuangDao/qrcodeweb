@@ -1,7 +1,6 @@
 import "./FormBabyAdmin.scss";
 import axios from "axios";
 import React, { useState, memo, useEffect } from "react";
-import imgVoucher from "./Voucher.png";
 import { v4 as uuidv4 } from "uuid";
 import { useUserContext } from "../../../Context/userContext";
 import { Button, Form, Input, Select, InputNumber, message } from "antd";
