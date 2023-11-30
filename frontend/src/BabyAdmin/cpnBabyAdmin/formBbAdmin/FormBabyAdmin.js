@@ -302,8 +302,8 @@ function FormBabyAdmin() {
           </Form>
         </div>
 
-        <div id="myDiv" className="bgImg">
-          <div className="imgVoucher">
+        <div className="bgImg">
+          <div id="myDiv" className="imgVoucher">
             <div className="codeNew">{codeNew ? codeNew.billID : ''}</div>
           </div>
         </div>
