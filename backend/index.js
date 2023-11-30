@@ -152,7 +152,7 @@ app.post('/api/drinks', async (request, response) => {
     }
 })
 
-app.get('/records', async (req, res) => {
+app.get('/api/records', async (req, res) => {
     const { from, to } = req.query; 
     const fromDate = new Date(from);
     const toDate = new Date(to);
