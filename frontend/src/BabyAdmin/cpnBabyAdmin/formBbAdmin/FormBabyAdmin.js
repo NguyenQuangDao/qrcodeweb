@@ -121,23 +121,23 @@ function FormBabyAdmin() {
 
   const captureAndSaveImage = () => {
     const element = document.getElementById('myDiv');
-    html2canvas(element).then(function(canvas) {
+    html2canvas(element).then(function (canvas) {
       const image = canvas.toDataURL('image/png');
-  
+
       // Tạo một liên kết tải xuống
       const link = document.createElement('a');
       link.href = image;
       link.download = 'myImage.png';
-  
+
       // Gợi ý người dùng lưu tệp tin vào ổ đĩa D: tải xuống
       link.setAttribute('download', 'D:\\download\\myImage.png');
-  
+
       // Thêm liên kết vào trang
       document.body.appendChild(link);
-  
+
       // Kích hoạt sự kiện nhấp chuột trên liên kết để tải xuống
       link.click();
-  
+
       // Xóa liên kết sau khi tải xuống
       document.body.removeChild(link);
     });
@@ -301,13 +301,17 @@ function FormBabyAdmin() {
             </Form.Item>
           </Form>
         </div>
-        
+
         <div id="myDiv" className="bgImg">
           <div className="imgVoucher">
             <div className="codeNew">{codeNew ? codeNew.billID : ''}</div>
           </div>
         </div>
-        <button onClick={captureAndSaveImage}>Lưu ảnh</button>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+        <Button type="primary" onClick={captureAndSaveImage}>
+          In Voucher
+        </Button>
+        </div>
       </div>
     </>
   );
