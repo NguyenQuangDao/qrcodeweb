@@ -153,18 +153,22 @@ app.post('/api/drinks', async (request, response) => {
 })
 
 app.get('/api/records', async (req, res) => {
-    const { from, to } = req.query; 
-    const fromDate = new Date(from);
-    const toDate = new Date(to);
-
-    const query = { createdAt: { $gte: fromDate, $lte: toDate } };
-  
     try {
-      const records = await Bill.find(query).toArray();
+      const { startDate, endDate } = req.query;
+      const fromDate = new Date(startDate);
+      const toDate = new Date(endDate);
+      toDate.setUTCHours(23, 59, 59, 999);
+  
+      const query = {
+        createdAt: { $gte: fromDate, $lte: toDate }
+      };
+
+      const records = await Bill.find(query);
+  
       res.json(records);
     } catch (error) {
-      console.error('Lỗi truy vấn:', error);
-      res.status(500).json({ error: 'Lỗi truy vấn' });
+      console.error(error);
+      res.status(500).json({ message: 'Internal Server Error' });
     }
   });
 
