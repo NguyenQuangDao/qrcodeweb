@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, } from "react";
 import "./InsertCode.scss";
-import InvoiceBill from "../Share/InvoiceBill/InvoiceBill";
+// import InvoiceBill from "../Share/InvoiceBill/InvoiceBill";
 import { message } from "antd";
 import axios from "axios";
+import TableBill from "../../Admin/Dashboard/TableBill/TableBill";
 
 function InsertCode() {
   const [successMess, setSuccessMess] = message.useMessage();
@@ -94,11 +95,7 @@ function InsertCode() {
           <span>Xóa hóa đơn</span>
         </button>
         </div>
-        {billData
-          ? billData?.map((billData) => (
-              <InvoiceBill key={billData.billID} billData={billData} />
-            ))
-          : ""}
+        {<TableBill billToDate={billData}/>}
       </div>
     </>
   );

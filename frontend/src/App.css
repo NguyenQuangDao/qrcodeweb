@@ -7,7 +7,34 @@
 
 @font-face {
   font-family: 'MyPaytone';
-  src: url('./asset/font/Paytone_One/PaytoneOne-Regular.ttf') format('truetype');
+  src: url('./asset/font/BT-Beau-Sans/BT-BeauSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'MyTikTok1';
+  src: url('./asset/font/TikTok-Sans/TikTokText-Bold.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'MyTikTok2';
+  src: url('./asset/font/TikTok-Sans/TikTokText-Medium.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'MyTikTok3';
+  src: url('./asset/font/TikTok-Sans/TikTokText-Regular.otf') format('truetype');
+}
+
+.MyTikTok1 {
+  font-family: 'MyTikTok1';
+}
+
+.MyTikTok2 {
+  font-family: 'MyTikTok2';
+}
+
+.MyTikTok3{
+  font-family: 'MyTikTok3';
 }
 
 .fontRobo {
@@ -28,10 +55,12 @@
   font-family: "MyRoboto";
   font-size: 14px;
 }
-.fontRobo16{
+
+.fontRobo16 {
   font-family: "MyRoboto";
   font-size: 16px;
 }
+
 .fontPaytone {
   font-family: "MyPaytone";
 }
@@ -40,10 +69,12 @@
   font-family: "MyPaytone";
   font-size: 32px;
 }
+
 .fontPaytone16 {
   font-family: "MyPaytone";
   font-size: 16px;
 }
+
 .fontPaytone14 {
   font-family: "MyPaytone";
   font-size: 14px;
@@ -52,9 +83,11 @@
 .textCenter {
   text-align: center;
 }
-.mgt40{
+
+.mgt40 {
   margin-top: 40px;
 }
+
 *:where(:not(html, iframe, canvas, img, svg, video):not(svg *, symbol *)) {
   display: revert;
 }

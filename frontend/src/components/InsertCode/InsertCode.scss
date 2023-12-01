@@ -30,6 +30,8 @@
   width: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
+  background-color: #3b3d54;
+
   @include respond(phoneSmall) {
     display: flex;
     justify-content: center;
@@ -39,7 +41,8 @@
   }
 
   .form_container {
-margin-top: 100px;
+    background-color: #3b3d54;
+    margin-top: 100px;
     width: fit-content;
     height: fit-content;
     display: flex;
@@ -47,7 +50,6 @@ margin-top: 100px;
     justify-content: center;
     gap: 15px;
     padding: 50px 40px 20px 40px;
-    background-color: #ffffff;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
       rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
     border-radius: 11px;

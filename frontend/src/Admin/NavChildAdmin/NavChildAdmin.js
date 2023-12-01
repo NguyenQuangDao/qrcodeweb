@@ -1,30 +1,31 @@
 import React from "react";
 import "./NavChildAdmin.scss";
-import { UilEstate } from "@iconscout/react-unicons";
 import { Link } from "react-router-dom";
-import {  ShoppingOutlined,SearchOutlined } from "@ant-design/icons";
+import { ShoppingOutlined, SearchOutlined,HomeOutlined } from "@ant-design/icons";
 function NavChildAdmin() {
   return (
     <div className="NavChildAdmin">
       <nav>
-        <span>
-          <Link to="/admin" style={{ display: "flex" }}>
-            <UilEstate className="i" />
-            <p className="link-name">Dahsboard</p>
+        <div>
+          <Link to="/admin" style={{ display: "flex", lineHeight:'40px'}}>
+            <HomeOutlined className="i" />
+            <p className="link-name MyTikTok2" style={{}}>
+              Dahsboard
+            </p>
           </Link>
-        </span>
-        <span>
-        <Link to="/addvoucher" style={{ display: "flex" }}>
-          <ShoppingOutlined className="i" />
-          <p className="link-name">Thêm Voucher</p>
-        </Link>
-        </span>
-        <span>
-        <Link to="/searchbill" style={{ display: "flex" }}>
-          <SearchOutlined className="i" />
-          <p className="link-name">Search hóa đơn</p>
-        </Link>
-        </span>
+        </div>
+        <div>
+          <Link to="/addvoucher" style={{ display: "flex"  ,lineHeight:'40px'}}>
+            <ShoppingOutlined className="i" />
+            <p className="link-name MyTikTok2">Voucher</p>
+          </Link>
+        </div>
+        <div>
+          <Link to="/searchbill" style={{ display: "flex" ,lineHeight:'40px'}}>
+            <SearchOutlined className="i" />
+            <p className="link-name MyTikTok2">Search</p>
+          </Link>
+        </div>
       </nav>
     </div>
   );

@@ -4,7 +4,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Open Sans", sans-serif;
 }
 
 :root {
@@ -12,7 +11,7 @@
   --primary-color: #0e4bf1;
   --panel-color: #fff;
   --text-color: #000;
-  --black-light-color: #707070;
+  --black-light-color: #212732;
   --border-color: #e6e5e5;
   --toggle-color: #ddd;
   --box1-color: #4da3ff;
@@ -83,6 +82,7 @@ body.dark {
   nav .logo-name {
     display: flex;
     align-items: center;
+    justify-content: center;
   }
   nav .logo-image {
     display: flex;
@@ -381,7 +381,6 @@ body.dark {
  
   .activity-data .data .data-list {
     font-size: 18px;
-    font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     margin-top: 20px;
     margin-left: -12px;

@@ -1,7 +1,7 @@
 import React from "react";
 import "./NavAdmin.scss";
-import { UilEstate, UilSignout, UilMoon } from "@iconscout/react-unicons";
-import { SearchOutlined,ShoppingOutlined } from "@ant-design/icons";
+import { UilSignout, UilMoon } from "@iconscout/react-unicons";
+import { SearchOutlined,ShoppingOutlined, HomeOutlined } from "@ant-design/icons";
 import { Modal } from "antd";
 import { Link } from "react-router-dom";
 
@@ -16,9 +16,7 @@ function NavAdmin(props) {
   return (
     <nav className={addClass == "open" ? "open" : "close"}>
       <div className="logo-name">
-        <div className="logo-image">
-        </div>
-        <span className="logo_name textCenter">Page Admin</span>
+        <span className="logo_name MyTikTok1" style={{fontSize:'28px'}}>Admin page</span>
       </div>
 
       <div className="menu-items">
@@ -26,8 +24,8 @@ function NavAdmin(props) {
           <li>
             <span>
               <Link to="/admin" style={{ display: 'flex' }}>
-                <UilEstate className="i" />
-                <p className="link-name">Dahsboard</p>
+                <HomeOutlined className="i" />
+                <p className="link-name MyTikTok2"  style={{ lineHeight: "35px" }}>Dahsboard</p>
               </Link>
             </span>
           </li>
@@ -35,7 +33,7 @@ function NavAdmin(props) {
             <span>
               <Link to="/addvoucher" style={{ display: 'flex' }}>
                 <ShoppingOutlined className="i" />
-                <p className="link-name">Tạo Voucher</p>
+                <p className="link-name MyTikTok2"  style={{ lineHeight: "35px" }}>Tạo Voucher</p>
               </Link>
             </span>
           </li>
@@ -43,7 +41,7 @@ function NavAdmin(props) {
             <span>
               <Link to="/searchbill" style={{ display: 'flex' }}>
                 <SearchOutlined className="i" />
-                <p className="link-name">Search Hóa Đơn</p>
+                <p className="link-name MyTikTok2"  style={{ lineHeight: "35px" }}>Search Hóa Đơn</p>
               </Link>
             </span>
           </li>

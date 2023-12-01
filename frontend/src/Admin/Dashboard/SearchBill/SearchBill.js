@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { DatePicker, Space } from "antd";
+import { DatePicker } from "antd";
 import NavChildAdmin from "../../NavChildAdmin/NavChildAdmin";
-import InvoiceBill from "../../../components/Share/InvoiceBill/InvoiceBill";
+import TableBill from "../TableBill/TableBill";
 const { RangePicker } = DatePicker;
 function SearchBill() {
   const [dateRange, setDateRange] = useState([]);
@@ -27,37 +27,23 @@ function SearchBill() {
   }, [dateRange]);
   console.log(billToDate);
   return (
-    <div>
+    <div style={{backgroundColor:'#181B22'}}>
       <NavChildAdmin />
-      <div
-        style={{
-          display: "flex",
-margin:'50px',
-          justifyContent:'center'
-        }}
-      >
-        <p className="fontRobo24 textCenter">Tra cứu hóa đơn</p>
+      <div className="SearchBill" style={{
+          display: 'flex',
+          margin: '50px',
+          justifyContent: 'center',
+      }}>
+        <p className="textCenter" style={{ fontSize: "28px", color:'#f8f8f8'}}>
+          Tra cứu hóa đơn
+        </p>
 
         <RangePicker
-          style={{ margin: "0px 0 0 50px",border:'2px solid #000' }}
+          style={{ margin: "0px 0 0 50px", border: "2px solid #000" }}
           onChange={handleDateChange}
         />
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-evenly",
-        }}
-      >
-        {billToDate ? (
-          billToDate?.map((billData) => (
-            <InvoiceBill key={billData.billID} billData={billData} />
-          ))
-        ) : (
-          <h2 className="textCenter fontRobo32">Không có đơn nào</h2>
-        )}
-      </div>
+      <div>{billToDate ? <TableBill billToDate={billToDate} /> : ""}</div>
     </div>
   );
 }

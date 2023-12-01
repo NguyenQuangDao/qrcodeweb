@@ -104,19 +104,12 @@ function Dashboard() {
     setChangePasswordUser("");
     if (checkDelete) {
       const userValue = auth.currentUser;
-      if (userValue) {
-        userValue
-          .delete()
-          .then(() => {
-            deleteDoc(doc(db, "user", idEditUser));
-          })
-          .catch((error) => {});
-      } else {
-        // Người dùng chưa đăng nhập, không có tài khoản để xóa
-        console.log("Người dùng chưa đăng nhập!");
-      }
+      userValue.delete().then(() => {
+        deleteDoc(doc(db, "user", idEditUser));
+      });
+      await deleteDoc(doc(db, "user", idEditUser))
     }
-    window.location.reload();
+    // window.location.reload();
   };
   const handleCancel = () => {
     setOpen(false);
@@ -147,28 +140,26 @@ function Dashboard() {
       {/* <!-- dashboard --> */}
       <section className="dashboard">
         {/* <!-- top --> */}
-        <div className="top">
+        <div className="top" style={{borderBottom:'1px solid #ccc'}}>
           <UilBars className="i UilBars" onClick={modeToggle} />
-          <div className="search-box">
+          {/* <div className="search-box">
             <UilSearch className="i" />
             <input type="text" placeholder="Search here..." />
-          </div>
-          <Avatar className="img_Avta" src={user.photoURL}>
-            {user.photoURL ? user.photoURL : user.displayName}
-          </Avatar>
+          </div> */}
+          <div className="nameAdmin MyTikTok3" style={{fontSize:'22px'}}>{user.displayName}</div>
         </div>
         {/* <!-- dash-content --> */}
         <div className="dash-content">
           <div className="overview">
             <div className="title">
               <UilTachometerFastAlt className="i" />
-              <span className="text">Dashboard</span>
+              <span className="text MyTikTok2">Dashboard</span>
             </div>
 
             <div className="boxes">
               <div className="box box_50">
                 <SolutionOutlined style={{ fontSize: "35px" }} className="i" />
-                <span className="text">Tổng hóa đơn</span>
+                <span className="text MyTikTok2">Số hóa đơn</span>
                 <span className="number">{sumBill.length}</span>
               </div>
               {/* <div className="box box2">
@@ -178,7 +169,7 @@ function Dashboard() {
               </div> */}
               <div className="box box_50 box4">
                 <UserOutlined style={{ fontSize: "35px" }} className="i" />
-                <span className="text">Tổng người dùng</span>
+                <span className="text MyTikTok2">Số người dùng</span>
                 <span className="number">{dataUser.length}</span>
               </div>
             </div>
@@ -187,13 +178,13 @@ function Dashboard() {
           <div className="activity">
             <div className="title">
               <UilClockThree className="i" />
-              <span className="text">Recent Activity</span>
+              <span className="text MyTikTok2">Recent Activity</span>
             </div>
 
             <div className="activity-data">
               <div>
-                <span className="data-title">Name</span>
-                <div className="data names">
+                <span className="data-title MyTikTok2">Name</span>
+                <div className="data names MyTikTok2">
                   {dataUser.map((data) => (
                     <span
                       key={data.uid}
@@ -212,7 +203,7 @@ function Dashboard() {
               </div>
               <div>
                 <span className="data-title">Email</span>
-                <div className="data email">
+                <div className="data email MyTikTok2">
                   {dataUser.map((data) => (
                     <span
                       key={data.uid}

@@ -2,7 +2,8 @@
 .Login {
   $green: #7ceaa4;
   $purple: #3b3d54;
-
+// background-color: #181B22;
+background: linear-gradient(to right, #19212E, #181B22);
   display: grid;
   place-items: center;
   height: 100vh;
@@ -21,9 +22,8 @@
     justify-content: center;
     gap: 15px;
     padding: 50px 40px 20px 40px;
-    background-color: #ffffff;
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
-      rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+    background-color: #202632;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
     border-radius: 11px;
     font-family: "Inter", sans-serif;
   }
@@ -55,7 +55,7 @@
     margin: 0;
     font-size: 1.25rem;
     font-weight: 700;
-    color: #212121;
+    color: #f8f8f8;
   }
 
   .subtitle {
@@ -105,16 +105,19 @@
     padding: 0 0 0 40px;
     border-radius: 7px;
     outline: none;
-    border: 1px solid #e5e5e5;
-    filter: drop-shadow(0px 1px 0px #efefef)
-      drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
     transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    border: 2px solid transparent;
+    box-shadow: 0px 0px 0px 2px #242424;
+    color: #e8e8e89b;
+    background-color: transparent;
   }
 
   .input_field:focus {
-    border: 1px solid transparent;
     box-shadow: 0px 0px 0px 2px #242424;
     background-color: transparent;
+    color: #e8e8e8;
+    border: 2px solid #e8e8e8;
   }
   .separator {
     width: 100%;
@@ -195,7 +198,7 @@
   }
   .note .note_register {
     font-size: 0.8rem;
-    color: blueviolet;
+    color: #115dfc;
     cursor: pointer;
   }
 }

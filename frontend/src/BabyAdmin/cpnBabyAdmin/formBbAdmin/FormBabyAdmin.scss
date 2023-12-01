@@ -29,17 +29,17 @@
     width: 100%;
   }
   .bgImg {
-    width: 40vw;
+    // width: 40vw;
     margin: 0 auto;
     position: relative;
     .imgVoucher {
       z-index: 1;
       position: relative;
-      background-image: url("./Voucher.png");
+      background-image: url("./Voucher.jpg");
       width: 500px;
       height: 300px;
       @include respond(tablet){
-        width: 300px;
+        width: 335px;
         height: 200px;
       };
       background-size:cover ;

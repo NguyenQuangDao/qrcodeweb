@@ -138,8 +138,8 @@ function Register() {
                     </button>
                   </div>
                   <div style={{ textAlign: "center", marginTop: "30px" }}>
-                    <p style={{ fontSize: "0.8rem" }}>
-                      Bạn đã có tài khoản? <Link to="/login">Đăng nhập</Link>
+                    <p style={{ fontSize: "0.8rem", color:'#8b8e98' }}>
+                      Bạn đã có tài khoản? <Link to="/login" style={{color:'#115dfc'}}>Đăng nhập</Link>
                     </p>
                   </div>
                 </form>

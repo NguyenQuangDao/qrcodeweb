@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Login.scss";
-// import { auth, db } from "../../Firebase/Config";
 import { useUserContext } from "../../../Context/userContext";
 import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 

@@ -4,8 +4,7 @@ import React, { useState, memo, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useUserContext } from "../../../Context/userContext";
 import { Button, Form, Input, Select, InputNumber, message } from "antd";
-import html2canvas from 'html2canvas';
-
+import html2canvas from "html2canvas";
 
 const { Option } = Select;
 function FormBabyAdmin() {
@@ -119,17 +118,17 @@ function FormBabyAdmin() {
   const [capturedImage, setCapturedImage] = useState(null);
 
   const captureAndSaveImage = () => {
-    const element = document.getElementById('myDiv');
+    const element = document.getElementById("myDiv");
     html2canvas(element).then(function (canvas) {
-      const image = canvas.toDataURL('image/png');
+      const image = canvas.toDataURL("image/png");
 
       // Tạo một liên kết tải xuống
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.href = image;
-      link.download = 'myImage.png';
+      link.download = "myImage.png";
 
       // Gợi ý người dùng lưu tệp tin vào ổ đĩa D: tải xuống
-      link.setAttribute('download', 'D:\\download\\myImage.png');
+      link.setAttribute("download", "D:\\download\\myImage.png");
 
       // Thêm liên kết vào trang
       document.body.appendChild(link);
@@ -146,9 +145,11 @@ function FormBabyAdmin() {
     capturedImage && (
       <div>
         <img src={capturedImage} alt="Captured Image" />
-        <a href={capturedImage} download="myImage.png">Tải xuống ảnh</a>
+        <a href={capturedImage} download="myImage.png">
+          Tải xuống ảnh
+        </a>
       </div>
-    )
+    );
   }
 
   // Filter `option.label` match the user type `input`
@@ -286,12 +287,7 @@ function FormBabyAdmin() {
                 <InputNumber min={1} />
               </Form.Item>
             ))}
-            <Form.Item
-              wrapperCol={{
-                offset: 8,
-                span: 16,
-              }}
-            >
+            <Form.Item>
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <Button type="primary" htmlType="submit">
                   Submit
@@ -303,13 +299,13 @@ function FormBabyAdmin() {
 
         <div className="bgImg">
           <div id="myDiv" className="imgVoucher">
-            <div className="codeNew">{codeNew ? codeNew.billID : ''}</div>
+            <div className="codeNew">{codeNew ? codeNew.billID : ""}</div>
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-        <Button type="primary" onClick={captureAndSaveImage}>
-          In Voucher
-        </Button>
+          <Button type="primary" onClick={captureAndSaveImage}>
+            In Voucher
+          </Button>
         </div>
       </div>
     </>

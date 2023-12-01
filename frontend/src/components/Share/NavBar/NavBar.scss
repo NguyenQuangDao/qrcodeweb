@@ -33,11 +33,6 @@
   --color-black: hsl(252, 30%, 10%);
 }
 
-html {
-  //   font-family: "Poppins", sans-serif;
-  font-family: "Open Sans", sans-serif;
-}
-
 a {
   text-decoration: none;
 }
@@ -110,13 +105,13 @@ img {
   padding: 10px 0;
   background: linear-gradient(
     45deg,
-    #264d59,
-    #08979d,
-    #6ec6ca,
-    #e2d368,
-    #f9ad6a,
-    #ff414d,
-    #f56a79
+    #000,
+    #000000b9,
+    #00000078,
+    #323232,
+    #484746,
+    rgb(159, 159, 159),
+    #c4c3c3
   );
   background-size: 300% 300%;
   animation: color 12s ease-in-out infinite;
@@ -219,17 +214,15 @@ img {
   font-weight: 500;
   letter-spacing: 1px;
   color: #fff;
-  text-shadow: 0 0 10px #03bcf4, 0 0 20px #03bcf4, 0 0 40px #03bcf4,
-    0 0 80px #03bcf4, 0 0 160px #03bcf4, 0 0 400px #03bcf4;
-  background-color: #2fcbc342;
+ 
+  background-color: rgba(55, 57, 57, 0.392);
   margin-right: 50px;
 }
 
 #top .logOut .btn-logOut:hover {
-  font-weight: bold;
-  background-color: none;
-  border: 2px solid #2fcbc3;
-  transition: all 50ms ease;
+  background-color: #3739393a;
+  text-shadow: 0 0 10px #03bcf4, 0 0 20px #03bcf4, 0 0 40px #03bcf4,
+  0 0 80px #03bcf4, 0 0 160px #03bcf4, 0 0 400px #03bcf4;
 }
 
 /* ========================== Create Post ====================== */
