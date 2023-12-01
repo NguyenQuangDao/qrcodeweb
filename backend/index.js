@@ -225,34 +225,23 @@ app.post('/api/auth/register', async (req, res) => {
 });
 
 app.put('/api/auth/update', async (req, res) => {
-    const { account, password, name, role } = req.body;
+    const { account, role } = req.body;
 
     try {
-        // Kiểm tra xem tài khoản đã tồn tại hay không
         const existingUser = await User.findOne({ account });
         if (!existingUser) {
             return res.status(404).json({ message: 'Tài khoản không tồn tại' });
         }
         if (
             !req.body.account ||
-            !req.body.password ||
-            !req.body.name ||
             !req.body.role 
-
         ) {
-            return response.status(400).send({
-                message: 'Send all required fields: password, password, name, role'
+            return res.status(400).send({
+                message: 'Send all required fields: account, role'
             });
         }
-
-        // Cập nhật thông tin tài khoản
-        existingUser.name = name;
-        existingUser.password = await bcrypt.hash(password, 10);
         existingUser.role = role;
-
-        // Lưu tài khoản đã cập nhật vào cơ sở dữ liệu
         await existingUser.save();
-
         res.status(200).json({ message: 'Tài khoản đã được cập nhật thành công' });
     } catch (error) {
         console.error(error);
