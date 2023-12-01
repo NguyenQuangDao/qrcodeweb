@@ -260,6 +260,15 @@ app.put('/api/auth/update', async (req, res) => {
     }
 });
 
+app.get('/api/users', async (request, response) => {
+    try {
+        const users = await User.find({});
+        return response.status(200).json(users);
+
+    } catch (error) {
+        console.log(error.message);
+    }
+});
 
 mongoose
     .connect(mongoDBURL)
