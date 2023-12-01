@@ -133,6 +133,7 @@ function Dashboard() {
     //   });
     //   await deleteDoc(doc(db, "user", idEditUser));
     // }
+    window.location.reload();
   };
   const handleCancel = () => {
     setOpen(false);
