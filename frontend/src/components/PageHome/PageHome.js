@@ -1,11 +1,11 @@
 import React from "react";
-
-import NavBar from "../Share/NavBar/NavBar";
+import './PageHome.scss'
+import NavBar from "../NavBar/NavBar";
 // import InvoiceBill from "../Share/InvoiceBill/InvoiceBill";
 import InsertCode from "../InsertCode/InsertCode";
 function PageHome() {
   return (
-    <>
+    <div id="PageHome">
       <NavBar />
       <div
         style={{
@@ -14,7 +14,7 @@ function PageHome() {
       >
         <InsertCode />
       </div>
-    </>
+    </div>
   );
 }
 

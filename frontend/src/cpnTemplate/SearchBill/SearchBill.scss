@@ -22,8 +22,9 @@
 }
 .SearchBill {
   display: flex;
-  margin: 50px;
   justify-content: center;
+  position: relative;
+  top: 50px;
   @include respond(phone) {
     flex-direction: column !important;
   }

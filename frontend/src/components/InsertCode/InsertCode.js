@@ -1,4 +1,4 @@
-import React, { useState, } from "react";
+import React, { useState } from "react";
 import "./InsertCode.scss";
 // import InvoiceBill from "../Share/InvoiceBill/InvoiceBill";
 import { message } from "antd";
@@ -25,7 +25,7 @@ function InsertCode() {
           const retrievedArray = JSON.parse(retrievedArrayJSON);
           setBillData(retrievedArray.reverse());
         } else {
-          console.log("Không có mảng được lưu trong localStorage");
+          console.log("Không có mảng được lưu");
         }
         // message
         successMess.open({
@@ -61,7 +61,6 @@ function InsertCode() {
     });
   };
 
-
   return (
     <>
       {setSuccessMess}
@@ -86,16 +85,16 @@ function InsertCode() {
               onChange={(e) => setValueSearchCode(e.target.value)}
             />
           </div>
-
-          <button className="sign-in_btn" onClick={handleSearchCode}>
-            <span>Tra cứu</span>
-          </button>
-          <div className="textCenter fontRobo14">or</div> 
-          <button className="clear-in_btn" onClick={handleClearData}>
-          <span>Xóa hóa đơn</span>
-        </button>
+          <div style={{display:'flex', alignItems:'center'}}>
+            <button className="sign-in_btn" onClick={handleSearchCode}>
+              <span>Tra cứu</span>
+            </button>
+            <button className="clear-in_btn" onClick={handleClearData}>
+              <span>Xóa</span>
+            </button>
+          </div>
         </div>
-        {<TableBill billToDate={billData}/>}
+        {<TableBill billToDate={billData} />}
       </div>
     </>
   );

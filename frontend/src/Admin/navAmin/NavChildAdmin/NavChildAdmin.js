@@ -6,22 +6,22 @@ function NavChildAdmin() {
   return (
     <div className="NavChildAdmin">
       <nav>
-        <div>
+        <div className="nav_link">
           <Link to="/admin" style={{ display: "flex", lineHeight:'40px'}}>
             <HomeOutlined className="i" />
-            <p className="link-name MyTikTok2" style={{}}>
+            <p className="link-name MyTikTok2">
               Dahsboard
             </p>
           </Link>
         </div>
-        <div>
+        <div className="nav_link">
           <Link to="/addvoucher" style={{ display: "flex"  ,lineHeight:'40px'}}>
             <ShoppingOutlined className="i" />
             <p className="link-name MyTikTok2">Voucher</p>
           </Link>
         </div>
-        <div>
-          <Link to="/searchbill" style={{ display: "flex" ,lineHeight:'40px'}}>
+        <div className="nav_link">
+          <Link to="/searchbilladmin" style={{ display: "flex" ,lineHeight:'40px'}}>
             <SearchOutlined className="i" />
             <p className="link-name MyTikTok2">Search</p>
           </Link>

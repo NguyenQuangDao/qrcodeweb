@@ -6,30 +6,6 @@
   box-sizing: border-box;
 }
 
-:root {
-  /* ===== Colors ===== */
-  --primary-color: #0e4bf1;
-  --panel-color: #fff;
-  --text-color: #000;
-  --black-light-color: #212732;
-  --border-color: #e6e5e5;
-  --toggle-color: #ddd;
-  --box1-color: #4da3ff;
-  --box2-color: #ffe6ac;
-  --box3-color: #e7d1fc;
-  --box4-color: #71bc68;
-  --box5-color: #a37b53;
-  --title-icon-color: #fff;
-
-  /* ====== Transition ====== */
-  --tran-05: all 0.3s ease;
-  --tran-03: all 0.3s ease;
-  --tran-03: all 0.2s ease;
-}
-
-body {
-  min-height: 100vh;
-}
 body.dark {
   --primary-color: #3a3b3c;
   --panel-color: #242526;
@@ -73,7 +49,7 @@ body.dark {
     width: 250px;
     padding: 10px 14px;
     background-color: var(--panel-color);
-    border-right: 1px solid var(--border-color);
+    // border-right: 1px solid var(--border-color);
     transition: var(--tran-03);
   }
   nav.close {
@@ -282,9 +258,6 @@ body.dark {
     width: 40px;
     border-radius: 50%;
   }
-  .dashboard .dash-content {
-    padding-top: 50px;
-  }
   .dash-content .title {
     display: flex;
     align-items: center;
@@ -326,8 +299,9 @@ body.dark {
     transition: var(--tran-05);
   }
   .dash-content .boxes .box_50 {
-    width: calc(50% - 10px);
-    margin-top: 20px;
+    width: calc(50% - 150px);
+    background-color: var(--black-light-color);
+    margin: 0 25px;
   }
   .boxes .box .i {
     width: 35px;
@@ -362,13 +336,13 @@ body.dark {
     display: flex;
     max-height: 500px;
     width: 100%;
-    overflow-y: scroll  ;
+    overflow-y: scroll;
   }
   .activity-data .data {
     display: flex;
     flex-direction: column;
     margin: 0 15px;
-    .changeTypeUser{
+    .changeTypeUser {
       background-color: #0e4bf1;
       position: absolute;
     }
@@ -378,7 +352,7 @@ body.dark {
     font-weight: 500;
     color: var(--text-color);
   }
- 
+
   .activity-data .data .data-list {
     font-size: 18px;
     font-weight: 400;
@@ -386,15 +360,13 @@ body.dark {
     margin-left: -12px;
     color: var(--text-color);
     width: 25vw;
-    overflow: hidden; 
-    text-overflow: ellipsis; 
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
   }
- .data-list :hover{
+  .data-list :hover {
     color: #0b3cc1;
   }
-
-
 
   @media (max-width: 1000px) {
     nav {

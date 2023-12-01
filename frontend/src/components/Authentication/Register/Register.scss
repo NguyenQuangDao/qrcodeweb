@@ -1,8 +1,8 @@
 .register {
   display: grid;
   place-items: center;
-  height: 100vh;
-  background-color: #181C23;
+  // height: 100vh;
+  background-color: #181c23;
   overflow: hidden;
   .font-poppins {
     font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
@@ -279,6 +279,7 @@
     width: 100%;
     font-size: 14px;
     font-family: inherit;
+    border-radius: 12px !important ;
   }
 
   .input--style-4 {
@@ -293,9 +294,9 @@
     border-radius: 5px;
     padding: 0 20px;
     font-size: 16px;
-    color: #F8F8F8;
+    color: #f8f8f8;
   }
-  .input--style-4:focus{
+  .input--style-4:focus {
     border: 2px solid #e8e8e8;
   }
 
@@ -554,20 +555,20 @@
 
   .card-4 {
     background: #fff;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-    box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    // -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    // -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    // box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
   }
 
   .card-4 .card-body {
     padding: 57px 65px;
     padding-bottom: 65px;
     background-color: #202632;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
-      rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    // box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    border-radius: 20px;
   }
 
   .register_btn {

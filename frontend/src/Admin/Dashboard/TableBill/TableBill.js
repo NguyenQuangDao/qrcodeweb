@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./TableBill.scss";
 import { Modal } from "antd";
-import InvoiceBill from "../../../components/Share/InvoiceBill/InvoiceBill";
+import InvoiceBill from "../../../cpnTemplate/InvoiceBill/InvoiceBill";
 function TableBill(props) {
   const formatDate = (dateString) => {
     const date = new Date(dateString);

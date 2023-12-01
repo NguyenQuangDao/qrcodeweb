@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect } from "react";
 import "./InvoiceBill.scss";
-import imgCoffe from "../../../asset/image/coffe.jpg";
+import imgCoffe from "../../asset/image/coffe.jpg";
 function InvoiceBill(props) {
   // format date
   const date = new Date(props.billData.createdAt);

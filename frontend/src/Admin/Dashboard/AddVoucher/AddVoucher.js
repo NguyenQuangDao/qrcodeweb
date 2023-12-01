@@ -1,5 +1,5 @@
-import FormBabyAdmin from "../../../BabyAdmin/cpnBabyAdmin/formBbAdmin/FormBabyAdmin";
-import NavChildAdmin from "../../NavChildAdmin/NavChildAdmin";
+import FormBabyAdmin from "../../../cpnTemplate/formBbAdmin/FormBabyAdmin";
+import NavChildAdmin from "../../navAmin/NavChildAdmin/NavChildAdmin";
 
 function AddVoucher() {
   return (

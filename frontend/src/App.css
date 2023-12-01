@@ -92,7 +92,7 @@
   display: revert;
 }
 
-/* scroll bar*/
+/* scroll bar */
 ::-webkit-scrollbar {
   width: 6px;
 }

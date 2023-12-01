@@ -32,7 +32,15 @@
     cursor: pointer;
     display: flex;
     justify-content: flex-start;
-    background-color: aliceblue;
+    background: linear-gradient(
+      45deg,
+      #000,
+      #000000b9,
+      #00000078,
+      #323232,
+    );
+    background-size: 300% 300%;
+    animation: color 12s ease-in-out infinite;
     p {
       cursor: pointer;
       font-weight: 500;
@@ -43,12 +51,16 @@
       position: relative;
       display: inline-block;
     }
-    .i{
-        color: #707070;
+    .i {
+      color: #707070;
     }
-    span{
+    span {
       margin-left: 15px;
       margin-top: 10px;
     }
+  }
+  .nav_link:hover .link-name,
+  .nav_link:hover .i {
+    color: #fff;
   }
 }

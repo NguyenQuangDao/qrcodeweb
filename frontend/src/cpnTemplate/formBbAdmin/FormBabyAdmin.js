@@ -2,7 +2,7 @@ import "./FormBabyAdmin.scss";
 import axios from "axios";
 import React, { useState, memo, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { useUserContext } from "../../../Context/userContext";
+import { useUserContext } from "../../Context/userContext";
 import { Button, Form, Input, Select, InputNumber, message } from "antd";
 import html2canvas from "html2canvas";
 
@@ -162,150 +162,171 @@ function FormBabyAdmin() {
       {/* success */}
 
       <div id="FormBabyAdmin">
-        <div>
-          <Form
-            name="basic"
-            labelCol={{
-              span: 10,
-            }}
-            wrapperCol={{
-              span: 40,
-            }}
+        <div className="FormBabyAdmin">
+          <div
             style={{
-              maxWidth: 750,
-              margin: 10,
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
             }}
-            initialValues={{
-              remember: true,
-            }}
-            form={form}
-            onFinish={handleSubmit}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off"
           >
-            {/* số lượng khách */}
-            <Form.Item
-              label="Số lượng khách hàng"
-              name="quantityuser"
-              rules={[
-                {
-                  required: false,
-                  message: "Vui lòng nhập thông tin",
-                },
-              ]}
+            <h3
+              style={{
+                textAlign: "center",
+                margin: "20px",
+                fontSize: "28px",
+                color: "#f8f8f8",
+              }}
             >
-              <InputNumber
-                name="numCustomer"
-                type="number"
-                size="large"
-                min={1}
-                max={100000}
-                defaultValue={1}
-                value={valueQuantityUser}
-                onChange={quantityUser}
-              />
-            </Form.Item>
-            {/* họ tên */}
-            <Form.Item
-              label="Họ tên khách hàng"
-              name="customerName"
-              rules={[
-                {
-                  required: true,
-                  message: "Vui lòng nhập thông tin",
-                },
-              ]}
+              Nhập hóa đơn
+            </h3>
+            <Form
+              name="formAdd"
+              labelCol={{
+                span: 6,
+              }}
+              wrapperCol={{
+                span: 18,
+              }}
+              style={{
+                margin: 10,
+                width: "100%",
+              }}
+              initialValues={{
+                remember: true,
+              }}
+              form={form}
+              onFinish={handleSubmit}
+              onFinishFailed={onFinishFailed}
+              autoComplete="off"
             >
-              <Input />
-            </Form.Item>
-            {/* tên của hàng  */}
-            <Form.Item
-              label="Tên cửa hàng"
-              name="storeName"
-              rules={[
-                {
-                  required: true,
-                  message: "Vui lòng nhập thông tin",
-                },
-              ]}
-            >
-              <Select
-                showSearch
-                placeholder="Chọn cửa hàng"
-                optionFilterProp="store"
-                onChange={onChangeSelectStore}
-                onSearch={onSearchStore}
-                filterOption={filterOption}
-                options={[
+              {/* số lượng khách */}
+              <Form.Item
+                label="Số lượng khách hàng"
+                name="quantityuser"
+                rules={[
                   {
-                    value: "Hà Nội",
-                    label: "Hà Nội",
-                  },
-                  {
-                    value: "Đà Nẵng",
-                    label: "Đà Nẵng",
-                  },
-                  {
-                    value: "Hồ Chí Minh",
-                    label: "Hồ Chí Minh",
-                  },
-                  {
-                    value: "Hải Phòng",
-                    label: "Hải Phòng",
+                    required: false,
+                    message: "Vui lòng nhập thông tin",
                   },
                 ]}
-              />
-            </Form.Item>
-            {/* đồ uống */}
-            <Form.Item
-              label="Select Drinks"
-              name="drinks"
-              rules={[
-                {
-                  required: true,
-                  message: "Vui lòng nhập thông tin",
-                },
-              ]}
-            >
-              <Select
-                mode="multiple"
-                placeholder="Select drinks"
-                onChange={handleDrinkChange}
-                value={selectedDrinks}
               >
-                {renderDrinkOptions()}
-              </Select>
-            </Form.Item>
-
-            {selectedDrinks.map((drink) => (
-              <Form.Item
-                key={drink}
-                label={`Số lượng ${drink}: `}
-                name={`quantity_${drink}`}
-                rules={[{ required: true, message: "Please enter quantity" }]}
-              >
-                <InputNumber min={1} />
+                <InputNumber
+                  name="numCustomer"
+                  type="number"
+                  size="large"
+                  min={1}
+                  max={100000}
+                  defaultValue={1}
+                  value={valueQuantityUser}
+                  onChange={quantityUser}
+                />
               </Form.Item>
-            ))}
-            <Form.Item>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <Button type="primary" htmlType="submit">
-                  Submit
-                </Button>
-              </div>
-            </Form.Item>
-          </Form>
-        </div>
+              {/* họ tên */}
+              <Form.Item
+                label="Họ tên khách hàng"
+                name="customerName"
+                rules={[
+                  {
+                    required: true,
+                    message: "Vui lòng nhập thông tin",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+              {/* tên của hàng  */}
+              <Form.Item
+                label="Tên cửa hàng"
+                name="storeName"
+                rules={[
+                  {
+                    required: true,
+                    message: "Vui lòng nhập thông tin",
+                  },
+                ]}
+              >
+                <Select
+                  showSearch
+                  placeholder="Chọn cửa hàng"
+                  optionFilterProp="store"
+                  onChange={onChangeSelectStore}
+                  onSearch={onSearchStore}
+                  filterOption={filterOption}
+                  options={[
+                    {
+                      value: "Hà Nội",
+                      label: "Hà Nội",
+                    },
+                    {
+                      value: "Đà Nẵng",
+                      label: "Đà Nẵng",
+                    },
+                    {
+                      value: "Hồ Chí Minh",
+                      label: "Hồ Chí Minh",
+                    },
+                    {
+                      value: "Hải Phòng",
+                      label: "Hải Phòng",
+                    },
+                  ]}
+                />
+              </Form.Item>
+              {/* đồ uống */}
+              <Form.Item
+                label="Select Drinks"
+                name="drinks"
+                rules={[
+                  {
+                    required: true,
+                    message: "Vui lòng nhập thông tin",
+                  },
+                ]}
+              >
+                <Select
+                  mode="multiple"
+                  placeholder="Select drinks"
+                  onChange={handleDrinkChange}
+                  value={selectedDrinks}
+                >
+                  {renderDrinkOptions()}
+                </Select>
+              </Form.Item>
 
-        <div className="bgImg">
-          <div id="myDiv" className="imgVoucher">
-            <div className="codeNew">{codeNew ? codeNew.billID : ""}</div>
+              {selectedDrinks.map((drink) => (
+                <Form.Item
+                  labelCol={{ span: 10 }}
+                  key={drink}
+                  label={`Số lượng ${drink}: `}
+                  name={`quantity_${drink}`}
+                  rules={[{ required: true, message: "Please enter quantity" }]}
+                >
+                  <InputNumber min={1} />
+                </Form.Item>
+              ))}
+              <Form.Item>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <Button type="primary" htmlType="submit">
+                    Submit
+                  </Button>
+                </div>
+              </Form.Item>
+            </Form>
           </div>
         </div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <Button type="primary" onClick={captureAndSaveImage}>
-            In Voucher
-          </Button>
+        <div className="printVoucher">
+          <div className="bgImg">
+            <div id="myDiv" className="imgVoucher">
+              <div className="codeNew">{codeNew ? codeNew.billID : ""}</div>
+            </div>
+          </div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Button type="primary" onClick={captureAndSaveImage}>
+              In Voucher
+            </Button>
+          </div>
         </div>
       </div>
     </>

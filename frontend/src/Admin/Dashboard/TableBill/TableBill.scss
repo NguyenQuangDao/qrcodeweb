@@ -13,7 +13,7 @@ $color-form-highlight: #eeeeee;
 }
 
 #TableBill {
-  margin-top: -150px;
+  margin-top: -50px;
   h1,
   h2,
   h3,
@@ -54,6 +54,11 @@ $color-form-highlight: #eeeeee;
     &:nth-of-type(odd) {
       background: $color-form-highlight;
     }
+  }
+  .table-row:hover{
+    background-color: rgb(94, 94, 94);
+    color: #f8f8f8;
+    font-weight: bold;
   }
 
   .table-data,

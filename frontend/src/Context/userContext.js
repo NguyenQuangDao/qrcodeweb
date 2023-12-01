@@ -1,61 +1,43 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
-import { auth, db } from "../Firebase/Config";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,useLocation, Re} from "react-router-dom";
+
 // import { v4 as uuidv4 } from 'uuid';
 const UserContext = createContext({});
 export const useUserContext = () => useContext(UserContext);
 export const ContextProivider = ({ children }) => {
   const navigate = useNavigate();
   const [user, setUser] = useState({});
-  const [loading, setLoading] = useState(false);
-  //signInWithPassword
-  const signInWithPassword = (email, password) => {
-    setLoading(true);
-    signInWithEmailAndPassword(auth, email, password)
-      .then((res) => {
-        setLoading(false);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => setLoading(false));
-    navigate("/");
+
+  //signInWithEmailPassword
+  const signInWithEmailPassword = (datalogin) => {
+    // setIsAuthen(false);
+    setUser(datalogin);
+    switch (datalogin.user.role) {
+      case "admin":
+        navigate("/admin");
+        break;
+      case "babyadmin":
+        navigate("/babyadmin");
+        break;
+      case "user":
+        navigate("/user");
+        break;
+      default:
+        navigate("/login");
+        break;
+    }
   };
 
-  //onAuthStateChanged
-  useEffect(() => {
-    setLoading(true);
-    const unsubcribe = onAuthStateChanged(auth, async (res) => {
-      if (res) {
-        setLoading(false);
-        // admin
-        await getDoc(doc(db, "user", res.uid)).then((doc) => {
-          setUser(doc.data());
-          if (doc.data().roles === "admin") {
-            return navigate("/admin");
-          } else if (doc.data().roles === "babyadmin") {
-            return navigate("/babyadmin");
-          } else if (doc.data().roles === "user") {
-            return  navigate("/user");
-          } else {
-              navigate("/login");
-          }
-        });
-        //If the account does not exist in the database => login
-      } else {
-        setLoading(false);
-         navigate("/login");
-      }
-    });
-    return () => {
-      unsubcribe();
-    };
-  }, []);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // const location = useLocation();
+  // if (!isLoggedIn) {
+  //   navigate("/login");
+  //   return null;
+  // }
   const contextValue = {
     user,
-    loading,
-    signInWithPassword,
+    signInWithEmailPassword,
   };
   return (
     <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>

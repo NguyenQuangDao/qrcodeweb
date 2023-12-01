@@ -2,11 +2,14 @@ import React, { useRef, useState } from "react";
 import "./Login.scss";
 import { useUserContext } from "../../../Context/userContext";
 import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
-
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { message } from "antd";
 function Login() {
+  const navigate = useNavigate();
   const [hideShowPassword, setHideShowPassword] = useState(false);
-  const { signInWithPassword } = useUserContext();
+  const { signInWithEmailPassword } = useUserContext();
+  const [error, setError] = message.useMessage();
   const emaiSignIn = useRef();
   const passwordSignIn = useRef();
   //signIn
@@ -14,7 +17,28 @@ function Login() {
     const email = emaiSignIn.current.value.toString();
     const password = passwordSignIn.current.value.toString();
     if (email && password) {
-      await signInWithPassword(email, password);
+      await axios
+        .post("http://localhost:5555/api/auth/login", {
+          account: email,
+          password: password,
+        })
+        .then((response) => {
+          // Xử lý phản hồi từ server
+          signInWithEmailPassword(response.data);
+        })
+        .catch((err) => {
+          // Xử lý lỗi nếu có
+          console.error(err);
+          error.open({
+            type: "error",
+            content: "tài khoản hoặc mật khẩu không đúng hãy nhập lại",
+          });
+        });
+    }else{
+      error.open({
+        type: "warning",
+        content: "Hãy Kiểm tra lại thông tin",
+      });
     }
   };
   //togglePassword
@@ -29,12 +53,14 @@ function Login() {
     }
   };
   return (
+    <>
+    {setError}
     <div className="Login">
       <div className="form_container">
         <div className="title_container">
           <p className="title">Đăng nhập</p>
           <span className="subtitle">
-            Get started with our app, just create an account and enjoy the
+            Get started with our website, just create an account and enjoy the
             experience.
           </span>
         </div>
@@ -83,11 +109,12 @@ function Login() {
         <p className="note">
           Bạn chưa có tài khoản?{" "}
           <Link to="/register" className="note_register">
-           Đăng kí
+            Đăng kí
           </Link>
         </p>
       </div>
     </div>
+    </>
   );
 }
 

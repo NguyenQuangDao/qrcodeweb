@@ -1,20 +1,9 @@
 import React from "react";
 import "./Register.scss";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { db } from "../../../Firebase/Config";
-import {
-  collection,
-  serverTimestamp,
-  setDoc,
-  doc,
-  query,
-  where,
-  getDocs,
-} from "firebase/firestore";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { message } from "antd";
 function Register() {
-  const auth = getAuth();
   const navigate = useNavigate();
   //set err
   const [error, setError] = message.useMessage();
@@ -30,38 +19,27 @@ function Register() {
         type: "error",
         content: "Mật khẩu xác nhận không trùng khớp",
       });
-      return;
     }
-    const q = query(collection(db, "user"), where("email", "==", email));
-    const querySnapshot = await getDocs(q);
     if (email && password && displayName) {
-      // query check email already exist
-      try {
-        if (!querySnapshot.empty) {
+     await axios
+        .post("http://localhost:5555/api/auth/register", {
+          account: email,
+          password: password,
+          name: displayName,
+        })
+        .then((response) => {
           error.open({
-            type: "error",
-            content: "Tài khoản đã tồn tại",
+            type: "success",
+            content: "Đã tạo tài khoản thành công",
           });
-          return;
-        } else {
-          const res = await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-          );
-          await setDoc(doc(db, "user", res.user.uid), {
-            displayName,
-            email: email,
-            password:password,
-            uid: res.user.uid,
-            timestamp: serverTimestamp(),
-            roles: "user",
-          });
-        }
-      } catch (err) {
-        console.log(err);
-      }
-      navigate("/login");
+          // Xử lý phản hồi từ server
+          console.log(response.data);
+          navigate("/login");
+        })
+        .catch((error) => {
+          // Xử lý lỗi nếu có
+          console.error(error);
+        });
     }
   };
   return (
@@ -138,8 +116,11 @@ function Register() {
                     </button>
                   </div>
                   <div style={{ textAlign: "center", marginTop: "30px" }}>
-                    <p style={{ fontSize: "0.8rem", color:'#8b8e98' }}>
-                      Bạn đã có tài khoản? <Link to="/login" style={{color:'#115dfc'}}>Đăng nhập</Link>
+                    <p style={{ fontSize: "0.8rem", color: "#8b8e98" }}>
+                      Bạn đã có tài khoản?{" "}
+                      <Link to="/login" style={{ color: "#115dfc" }}>
+                        Đăng nhập
+                      </Link>
                     </p>
                   </div>
                 </form>
