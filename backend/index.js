@@ -1,9 +1,11 @@
 import express, { response } from "express";
 import cors from 'cors';
-import { PORT, mongoDBURL } from "./config.js";
+import { PORT, mongoDBURL, JWT_SECRET_KEY } from "./config.js";
 import mongoose from "mongoose";
 import { Bill, Drink } from "./models/billModel.js"
-
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { User } from './models/userModel.js'
 
 const app = express();
 app.use(cors());
@@ -21,7 +23,7 @@ app.listen(PORT, () => {
 
 app.post('/api/bills', async (req, res) => {
     try {
-        const { billID, numCustomer, customerName, storeName , drinks} = req.body;
+        const { billID, numCustomer, customerName, storeName, drinks } = req.body;
 
         if (!billID || !numCustomer || !customerName || !storeName) {
             return res.status(400).send({
@@ -125,7 +127,7 @@ app.get('/api/drinks', async (request, response) => {
 
 app.post('/api/drinks', async (request, response) => {
     try {
-        const {name, price} = request.body;
+        const { name, price } = request.body;
 
         if (!name || !price) {
             return response.status(400).send({
@@ -154,21 +156,67 @@ app.post('/api/drinks', async (request, response) => {
 
 app.get('/api/records', async (req, res) => {
     try {
-      const { startDate, endDate } = req.query;
-      const fromDate = new Date(startDate);
-      const toDate = new Date(endDate);
-      toDate.setUTCHours(23, 59, 59, 999);
-  
-      const query = {
-        createdAt: { $gte: fromDate, $lte: toDate }
-      };
+        const { startDate, endDate } = req.query;
+        const fromDate = new Date(startDate);
+        const toDate = new Date(endDate);
+        toDate.setUTCHours(23, 59, 59, 999);
 
-      const records = await Bill.find(query);
+        const query = {
+            createdAt: { $gte: fromDate, $lte: toDate }
+        };
+
+        const records = await Bill.find(query);
+
+        res.json(records);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
+
+const secretKey = JWT_SECRET_KEY;
+
+app.post('/api/auth/login', async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        const user = await User.findOne({ username });
+        if (!user || !bcrypt.compareSync(password, user.password)) {
+            return res.status(401).json({ message: 'Tên đăng nhập hoặc mật khẩu không đúng' });
+        }
+
+        const token = jwt.sign({ userId: user._id }, 'your_secret_key');
+
+        res.json({ user, token });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Đã xảy ra lỗi' });
+    }
+});
+
+app.post('/api/auth/register', async (req, res) => {
+    const { account, password , name} = req.body;
   
-      res.json(records);
+    try {
+      const existingUser = await User.findOne({ account });
+      if (existingUser) {
+        return res.status(400).json({ message: 'Tài khoản đã tồn tại' });
+      }
+  
+      const hashedPassword = await bcrypt.hash(password, 10);
+  
+      const newUser = new User({
+        account,
+        password: hashedPassword,
+        name
+      });
+  
+      await newUser.save();
+  
+      res.status(201).json({ message: 'Tài khoản đã được tạo thành công' });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: 'Internal Server Error' });
+      res.status(500).json({ message: 'Đã xảy ra lỗi' });
     }
   });
 
