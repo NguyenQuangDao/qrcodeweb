@@ -23,9 +23,9 @@ app.listen(PORT, () => {
 
 app.post('/api/bills', async (req, res) => {
     try {
-        const { billID, numCustomer, customerName, storeName, drinks } = req.body;
+        const { billID, numCustomer, customerName, storeName, drinks, updateAccount } = req.body;
 
-        if (!billID || !numCustomer || !customerName || !storeName) {
+        if (!billID || !numCustomer || !customerName || !storeName || !updateAccount) {
             return res.status(400).send({
                 message: 'Send all required fields: billID, numCustomer, customerName, storeName'
             });
@@ -43,7 +43,8 @@ app.post('/api/bills', async (req, res) => {
             numCustomer,
             customerName,
             storeName,
-            drinks
+            drinks,
+            updateAccount
         };
 
         const bill = await Bill.create(newBill);
@@ -87,7 +88,9 @@ app.put('/api/bills/:id', async (request, response) => {
             !request.body.billID ||
             !request.body.numCustomer ||
             !request.body.customerName ||
-            !request.body.storeName
+            !request.body.storeName ||
+            !request.body.updateAccount
+
         ) {
             return response.status(400).send({
                 message: 'Send all required fields: billID, numCustomer, customerName, storeName'
@@ -98,7 +101,8 @@ app.put('/api/bills/:id', async (request, response) => {
             numCustomer: request.body.numCustomer,
             customerName: request.body.customerName,
             storeName: request.body.storeName,
-            drinks: request.body.drinks
+            drinks: request.body.drinks,
+            updateAccount: request.body.updateAccount
         };
 
         const bill = await Bill.findOneAndUpdate({ billID: id }, updatedBill, { new: true });
@@ -195,30 +199,67 @@ app.post('/api/auth/login', async (req, res) => {
 });
 
 app.post('/api/auth/register', async (req, res) => {
-    const { account, password , name} = req.body;
-  
+    const { account, password, name } = req.body;
+
     try {
-      const existingUser = await User.findOne({ account });
-      if (existingUser) {
-        return res.status(400).json({ message: 'Tài khoản đã tồn tại' });
-      }
-  
-      const hashedPassword = await bcrypt.hash(password, 10);
-  
-      const newUser = new User({
-        account,
-        password: hashedPassword,
-        name
-      });
-  
-      await newUser.save();
-  
-      res.status(201).json({ message: 'Tài khoản đã được tạo thành công' });
+        const existingUser = await User.findOne({ account });
+        if (existingUser) {
+            return res.status(400).json({ message: 'Tài khoản đã tồn tại' });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const newUser = new User({
+            account,
+            password: hashedPassword,
+            name
+        });
+
+        await newUser.save();
+
+        res.status(201).json({ message: 'Tài khoản đã được tạo thành công' });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Đã xảy ra lỗi' });
+        console.error(error);
+        res.status(500).json({ message: 'Đã xảy ra lỗi' });
     }
-  });
+});
+
+app.put('/api/auth/update', async (req, res) => {
+    const { account, password, name, role } = req.body;
+
+    try {
+        // Kiểm tra xem tài khoản đã tồn tại hay không
+        const existingUser = await User.findOne({ account });
+        if (!existingUser) {
+            return res.status(404).json({ message: 'Tài khoản không tồn tại' });
+        }
+        if (
+            !req.body.account ||
+            !req.body.password ||
+            !req.body.name ||
+            !req.body.role 
+
+        ) {
+            return response.status(400).send({
+                message: 'Send all required fields: password, password, name, role'
+            });
+        }
+
+        // Cập nhật thông tin tài khoản
+        existingUser.name = name;
+        existingUser.password = await bcrypt.hash(password, 10);
+        existingUser.role = role;
+
+        // Lưu tài khoản đã cập nhật vào cơ sở dữ liệu
+        await existingUser.save();
+
+        res.status(200).json({ message: 'Tài khoản đã được cập nhật thành công' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Đã xảy ra lỗi' });
+    }
+});
+
 
 mongoose
     .connect(mongoDBURL)

@@ -10,7 +10,7 @@ const drinkSchema = new mongoose.Schema({
         type: Number,
         required: true
     }
-},{
+}, {
     timestamps: true
 });
 
@@ -43,12 +43,16 @@ const billSchema = new mongoose.Schema({
             type: Number,
             required: true
         },
-        price:{
+        price: {
             type: Number,
             required: true
         }
-    }]
-},{
+    }],
+    updateAccount: {
+        type: String,
+        required: true
+    }
+}, {
     timestamps: true
 });
 
