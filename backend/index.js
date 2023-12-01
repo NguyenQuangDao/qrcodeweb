@@ -181,12 +181,12 @@ app.get('/api/records', async (req, res) => {
 const secretKey = JWT_SECRET_KEY;
 
 app.post('/api/auth/login', async (req, res) => {
-    const { username, password } = req.body;
+    const { account, password } = req.body;
 
     try {
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ account });
         if (!user || !bcrypt.compareSync(password, user.password)) {
-            return res.status(401).json({ message: 'Tên đăng nhập hoặc mật khẩu không đúng' });
+            return res.status(401).json({ message: 'Tài khoản hoặc mật khẩu không đúng' });
         }
 
         const token = jwt.sign({ userId: user._id }, 'your_secret_key');
