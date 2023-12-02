@@ -1,11 +1,17 @@
 import express, { response } from "express";
 import cors from 'cors';
-import { PORT, mongoDBURL, JWT_SECRET_KEY } from "./config.js";
+import { JWT_SECRET_KEY } from "./config.js";
 import mongoose from "mongoose";
 import { Bill, Drink } from "./models/billModel.js"
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { User } from './models/userModel.js'
+import dotenv from 'dotenv'
+
+dotenv.config();
+
+const PORT = process.env.PORT || 5555
+const mongoDBURL = process.env.DATABASE_URL
 
 const app = express();
 app.use(cors());
