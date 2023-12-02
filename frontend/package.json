@@ -2,7 +2,7 @@
   "homepage": "https://nguyhonglong.github.io/classguard/",
   "name": "my-app",
   "version": "0.1.0",
-  "private": false,
+  "private": true,
   "dependencies": {
     "@chatscope/chat-ui-kit-react": "^1.10.1",
     "@emoji-mart/react": "^1.1.1",
